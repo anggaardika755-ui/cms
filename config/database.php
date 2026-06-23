@@ -92,7 +92,18 @@ return [
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
-
+'oracle' => [
+    'driver'         => 'oracle',
+    'tns'            => env('DB_TNS', ''),
+    'host'           => env('DB_HOST', 'localhost'),
+    'port'           => env('DB_PORT', '1521'),
+    'database'       => env('DB_DATABASE', 'XEPDB1'),
+    'service_name'   => env('DB_SERVICE_NAME', 'XEPDB1'),
+    'username'       => env('DB_USERNAME', 'PROJECT_DDP_TOKO_BANGUNAN'),
+    'password'       => env('DB_PASSWORD', 'TOKOBG'),
+    'charset'        => 'AL32UTF8',
+    'prefix'         => '',
+],
     ],
 
     /*
