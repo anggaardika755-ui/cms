@@ -123,37 +123,102 @@
 
 <body class="bg-surface text-on-surface">
 
-<nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-surface dark:bg-surface-dim transition-all duration-300">
-    <div class="flex justify-between items-center px-lg py-md max-w-container-max mx-auto">
-        
-        <div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">Bangun Mulyo</div>
-        
-        <div class="hidden lg:flex items-center gap-lg">
-            <a class="pb-1 font-label-md text-label-md transition-colors {{ request()->routeIs('home') ? 'text-secondary dark:text-secondary-fixed-dim' : 'text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary' }}" href="{{ route('home') }}">Home</a>
-            <a class="pb-1 font-label-md text-label-md transition-colors {{ request()->routeIs('produk.front') ? 'text-secondary dark:text-secondary-fixed-dim' : 'text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary' }}" href="{{ route('produk.front') }}">Produk</a>
-            <a class="pb-1 font-label-md text-label-md transition-colors {{ request()->routeIs('kontak') ? 'text-secondary dark:text-secondary-fixed-dim' : 'text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary' }}" href="{{ route('kontak') }}">Kontak</a>
-        </div>
-        
-        <div class="flex items-center gap-md">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-md border-b border-slate-100/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
             
-            <a href="{{ route('login') ?? '#' }}" class="hidden lg:block bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md text-label-md hover:opacity-90 transition-all duration-150 text-center">Login</a>
-            
-            <button id="mobile-menu-btn" class="lg:hidden p-sm text-on-surface-variant hover:text-primary transition-colors focus:outline-none">
-                <span id="menu-icon" class="material-symbols-outlined" data-icon="menu">menu</span>
-            </button>
+            <a href="{{ url('/') }}" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-xl bg-[#183059] flex items-center justify-center text-white shadow-md shadow-[#183059]/25 group-hover:scale-105 transition-all duration-300">
+                    <span class="material-symbols-outlined text-amber-400 text-2xl">domain</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-black text-xl tracking-tight text-[#183059] leading-none">BANGUN MULYO</span>
+                    <span class="text-[9px] font-extrabold tracking-widest text-amber-600 uppercase mt-1">Building Materials</span>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center gap-1 bg-slate-100/80 p-1.5 rounded-full border border-slate-200/60 shadow-inner">
+                
+                <a href="{{ url('/') }}" 
+                   class="px-5 py-2 rounded-full text-xs font-bold transition-all duration-200 {{ request()->is('/') ? 'bg-white text-[#183059] shadow-sm' : 'text-slate-500 hover:text-[#183059]' }}">
+                   Beranda
+                </a>
+
+                <a href="{{ route('produk.front') }}" 
+                   class="px-5 py-2 rounded-full text-xs font-bold transition-all duration-200 {{ request()->is('produk*') ? 'bg-white text-[#183059] shadow-sm' : 'text-slate-500 hover:text-[#183059]' }}">
+                   Katalog Produk
+                </a>
+
+                <a href="{{ route('profil') }}" 
+                   class="px-5 py-2 rounded-full text-xs font-bold transition-all duration-200 {{ request()->is('profil*') ? 'bg-white text-[#183059] shadow-sm' : 'text-slate-500 hover:text-[#183059]' }}">
+                   Profil Toko
+                </a>
+
+                <a href="{{ route('kontak') }}" 
+                   class="px-5 py-2 rounded-full text-xs font-bold transition-all duration-200 {{ request()->is('kontak*') ? 'bg-white text-[#183059] shadow-sm' : 'text-slate-500 hover:text-[#183059]' }}">
+                   Kontak Kami
+                </a>
+
+            </div>
+
+            <div class="hidden md:flex items-center gap-3">
+                <a href="https://wa.me/6281234567890" target="_blank" 
+                   class="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200/80 hover:bg-emerald-500 hover:text-white font-bold text-xs transition-all shadow-sm group">
+                    <span class="material-symbols-outlined text-base text-emerald-600 group-hover:text-white transition-colors">call</span>
+                    <span>CS Order</span>
+                </a>
+
+                @auth
+                    <a href="{{ url('/dashboard') }}" 
+                       class="flex items-center gap-2 bg-[#183059] text-white px-5 py-2.5 rounded-xl font-bold text-xs hover:bg-[#112240] shadow-lg shadow-[#183059]/20 transition-all active:scale-95">
+                        <span class="material-symbols-outlined text-amber-400 text-sm">dashboard</span>
+                        <span>Dashboard</span>
+                    </a>
+                @else
+                    <a href="{{ route('login') }}" 
+                       class="flex items-center gap-1.5 bg-slate-800 text-slate-200 px-5 py-2.5 rounded-xl font-bold text-xs hover:bg-[#183059] hover:text-white transition-all active:scale-95">
+                        <span class="material-symbols-outlined text-sm">lock</span>
+                        <span>Staf Login</span>
+                    </a>
+                @endauth
+            </div>
+
+            <div class="flex md:hidden items-center gap-2">
+                @auth
+                    <a href="{{ url('/dashboard') }}" class="px-3 py-1.5 rounded-lg bg-[#183059] text-amber-400 text-xs font-bold">Panel</a>
+                @endauth
+                <button id="nav-toggle" type="button" class="p-2 rounded-xl text-slate-600 hover:bg-slate-100 focus:outline-none">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+            </div>
+
         </div>
     </div>
 
-    <div id="mobile-menu" class="hidden lg:hidden bg-surface dark:bg-surface-dim border-t border-outline-variant/30 absolute w-full shadow-lg">
-        <div class="flex flex-col px-lg py-md space-y-md">
-           <a class="font-bold font-label-md text-label-md {{ request()->routeIs('home') ? 'text-primary dark:text-primary-fixed' : 'text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary' }}" href="{{ route('home') }}">Home</a>
-           <a class="font-label-md text-label-md {{ request()->routeIs('produk.front') ? 'text-primary dark:text-primary-fixed' : 'text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary' }}" href="{{ route('produk.front') }}">Produk</a>
-           <a class="font-label-md text-label-md {{ request()->routeIs('kontak') ? 'text-primary dark:text-primary-fixed' : 'text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary' }}" href="{{ route('kontak') }}">Kontak</a>
-            <hr class="border-outline-variant/30">
-            <a href="{{ route('login') ?? '#' }}" class="w-full bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md text-label-md hover:opacity-90 transition-all duration-150 text-center">Login</a>
+    <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-2xl border-b border-slate-200 px-6 pt-3 pb-6 space-y-2.5 shadow-2xl animate-fade-in-down">
+        <a href="{{ url('/') }}" class="block px-4 py-3 rounded-xl text-sm font-bold {{ request()->is('/') ? 'bg-[#183059] text-white' : 'text-slate-600 hover:bg-slate-50' }}">Beranda</a>
+        <a href="{{ route('produk.front') }}" class="block px-4 py-3 rounded-xl text-sm font-bold {{ request()->is('produk*') ? 'bg-[#183059] text-white' : 'text-slate-600 hover:bg-slate-50' }}">Katalog Produk</a>
+        <a href="{{ route('profil') }}" class="block px-4 py-3 rounded-xl text-sm font-bold {{ request()->is('profil*') ? 'bg-[#183059] text-white' : 'text-slate-600 hover:bg-slate-50' }}">Profil Toko</a>
+        <a href="{{ route('kontak') }}" class="block px-4 py-3 rounded-xl text-sm font-bold {{ request()->is('kontak*') ? 'bg-[#183059] text-white' : 'text-slate-600 hover:bg-slate-50' }}">Kontak Kami</a>
+        
+        <div class="pt-4 border-t border-slate-100 flex flex-col gap-2">
+            <a href="https://wa.me/6281234567890" target="_blank" class="w-full text-center py-3 rounded-xl bg-[#25D366] text-white font-bold text-xs shadow-md">
+                💬 Chat WhatsApp CS
+            </a>
+            @guest
+                <a href="{{ route('login') }}" class="w-full text-center py-3 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs">
+                    🔒 Staf Internal Login
+                </a>
+            @endguest
         </div>
     </div>
 </nav>
+
+<script>
+    document.getElementById('nav-toggle').addEventListener('click', function() {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+</script>
 
 <!-- AREA KONTEN DINAMIS -->
 <div class="main-content">
@@ -173,7 +238,7 @@
                 </div>
                 <div class="flex items-center gap-sm">
                     <span class="material-symbols-outlined text-secondary" data-icon="phone_iphone">phone_iphone</span>
-                    <span class="text-label-sm">+62 812-3456-7890 (WhatsApp)</span>
+                    <span class="text-label-sm">+62 838-3142-8699 (WhatsApp)</span>
                 </div>
                 <div class="flex items-center gap-sm">
                     <span class="material-symbols-outlined text-secondary" data-icon="mail">mail</span>

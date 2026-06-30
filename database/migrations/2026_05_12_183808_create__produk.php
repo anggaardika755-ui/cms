@@ -8,20 +8,27 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('produks', function (Blueprint $table) {
-            $table->id();
+        // 1. Nama tabel dikunci jadi 'produk' (Tanpa huruf S)
+        Schema::create('produk', function (Blueprint $table) {
+            
+            // 2. Primary Key dikunci jadi 'id_produk' (Bukan 'id')
+            $table->bigIncrements('id_produk'); 
+
             $table->string('nama_produk');
-            $table->string('kategori');
-            $table->integer('harga');
-            $table->integer('stok');
+            $table->string('kategori')->default('Material');
+            
+            // 3. Nama kolom disamakan dengan Controller Anda: harga_jual & jumlah_produk
+            $table->integer('harga_jual'); 
+            $table->integer('jumlah_produk'); 
+            
             $table->text('deskripsi')->nullable();
-            $table->string('gambar')->nullable(); // Menyimpan path/nama file gambar
+            $table->string('gambar')->nullable(); 
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('produks');
+        Schema::dropIfExists('produk');
     }
 };

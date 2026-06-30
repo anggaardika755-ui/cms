@@ -1,263 +1,285 @@
 @extends('layouts.front')
 
-@section('title', 'Beranda | Bangun Mulyo')
+@section('title', 'Distributor Material Bangunan Terpercaya | Bangun Mulyo')
 
 @section('content')
-<header class="relative pt-32 pb-xl px-lg overflow-hidden">
+
+<header class="relative min-h-[90vh] flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#183059]">
     
     <div class="absolute inset-0 z-0">
-        <img 
-            src="{{ asset('storage/' . $hero->image_path) }}" 
-            alt="Bangun Mulyo Hero"
-            class="w-full h-full object-cover object-center absolute inset-0"
-        >
-        
-        <div class="absolute inset-0 bg-[#183059] bg-opacity-70"></div>
+        <img src="{{ optional($hero)->image_path ? asset('storage/' . $hero->image_path) : 'https://images.unsplash.com/photo-1504307651591-00dcc993a460?q=80&w=1920&auto=format&fit=crop' }}"
+             alt="Bangun Mulyo Hero" class="w-full h-full object-cover object-center absolute inset-0 scale-105 animate-pulse-slow">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#183059]/95 via-[#183059]/85 to-[#183059]/70"></div>
     </div>
-    <div class="relative z-10 max-w-container-max mx-auto flex flex-col items-center text-center">
-        <h1 class="text-white font-display-lg text-display-lg mb-md max-w-4xl">
-            {{ optional($hero)->title ?? 'Solusi Lengkap Kebutuhan Material Bangunan Anda' }}
+    
+    <div class="relative z-10 max-w-5xl mx-auto text-center space-y-6 sm:space-y-8">
+        
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-amber-400 text-xs sm:text-sm font-bold tracking-wide shadow-inner">
+            <span class="material-symbols-outlined text-base animate-spin-slow">engineering</span>
+            <span>MITRA RESMI KONTRAKTOR & DEVELOPER JAWA BARAT</span>
+        </div>
+
+        <h1 class="text-white font-black text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-none max-w-4xl mx-auto">
+            {{ optional($hero)->title ?? 'Solusi Material Bangunan Kokoh & Terukur.' }}
         </h1>
         
-        <p class="text-surface-variant font-body-lg text-body-lg mb-xl max-w-2xl">
-            {{ optional($hero)->subtitle ?? 'Menyediakan berbagai material bangunan berkualitas dengan harga kompetitif untuk proyek rumah, gedung, dan konstruksi.' }}
+        <p class="text-slate-200 text-base sm:text-xl font-normal max-w-2xl mx-auto leading-relaxed opacity-90">
+            {{ optional($hero)->subtitle ?? 'Menyediakan segala kebutuhan konstruksi mulai dari fondasi hingga atap dengan jaminan kualitas SNI dan harga harga grosir terbaik.' }}
         </p>
 
-        <div class="flex flex-col md:flex-row gap-md">
-            <a href="{{ route('produk.front') }}" class="bg-secondary text-white px-xl py-md rounded-xl font-headline-md text-headline-md hover:scale-105 transition-transform shadow-lg inline-block">
-                {{ optional($hero)->button_text_1 ?? 'Lihat Produk' }}
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+            <a href="{{ route('produk.front') }}" 
+               class="w-full sm:w-auto px-8 py-4 bg-amber-500 text-[#183059] font-black text-sm uppercase tracking-wider rounded-xl hover:bg-amber-400 hover:scale-105 active:scale-95 transition-all shadow-xl shadow-amber-500/20 text-center">
+                {{ optional($hero)->button_text_1 ?? 'Buka Katalog Produk' }}
             </a>
-            <a href="{{ route('kontak') }}" class="border-2 border-white text-white px-xl py-md rounded-xl font-headline-md text-headline-md hover:bg-white hover:text-primary transition-all inline-block">
-                {{ optional($hero)->button_text_2 ?? 'Hubungi Kami' }}
+            
+            <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Bangun%20Mulyo,%20saya%20ingin%20berkonsultasi%20kebutuhan%20material." target="_blank"
+               class="w-full sm:w-auto px-8 py-4 border-2 border-white/80 bg-white/5 text-white font-bold text-sm rounded-xl backdrop-blur-sm hover:bg-white hover:text-[#183059] active:scale-95 transition-all text-center flex items-center justify-center gap-2">
+               <span class="material-symbols-outlined text-emerald-400">chat</span>
+                {{ optional($hero)->button_text_2 ?? 'Konsultasi via WhatsApp' }}
             </a>
         </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-12 border-t border-white/15 max-w-4xl mx-auto text-white">
+            <div class="p-2">
+                <p class="text-2xl sm:text-3xl font-black text-amber-400">15+ thn</p>
+                <p class="text-xs text-slate-300 font-medium">Pengalaman Melayani</p>
+            </div>
+            <div class="p-2">
+                <p class="text-2xl sm:text-3xl font-black text-amber-400">100%</p>
+                <p class="text-xs text-slate-300 font-medium">Jaminan Standar SNI</p>
+            </div>
+            <div class="p-2">
+                <p class="text-2xl sm:text-3xl font-black text-amber-400">5.000+</p>
+                <p class="text-xs text-slate-300 font-medium">Proyek Terselesaikan</p>
+            </div>
+            <div class="p-2">
+                <p class="text-2xl sm:text-3xl font-black text-amber-400">Tepat</p>
+                <p class="text-xs text-slate-300 font-medium">Waktu Pengiriman</p>
+            </div>
+        </div>
+
     </div>
 </header>
-<main class="max-w-container-max mx-auto px-lg py-xl space-y-xl">
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-28">
 
-    <section class="scroll-reveal visible">
-        <div class="flex flex-col items-center mb-xl">
-            <h2 class="font-headline-lg text-headline-lg text-primary border-b-4 border-secondary pb-2">Kategori Produk Unggulan</h2>
+    <section>
+        <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+            <h2 class="text-xs font-extrabold uppercase tracking-widest text-amber-600">Pencarian Cepat</h2>
+            <p class="text-2xl sm:text-4xl font-extrabold text-[#183059]">Kategori Material Utama</p>
+            <div class="w-16 h-1 bg-amber-500 mx-auto rounded-full"></div>
         </div>
         
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-md">
-            <div class="group bg-white p-lg rounded-xl shadow-sm border border-outline-variant hover:border-secondary transition-all cursor-pointer flex flex-col items-center text-center">
-                <div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mb-md group-hover:bg-secondary-fixed transition-colors">
-                    <span class="material-symbols-outlined text-primary group-hover:text-secondary text-3xl" data-icon="architecture">architecture</span>
-                </div>
-                <span class="font-label-md text-label-md text-on-surface">Semen</span>
-            </div>
-            
-            <div class="group bg-white p-lg rounded-xl shadow-sm border border-outline-variant hover:border-secondary transition-all cursor-pointer flex flex-col items-center text-center">
-                <div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mb-md group-hover:bg-secondary-fixed transition-colors">
-                    <span class="material-symbols-outlined text-primary group-hover:text-secondary text-3xl" data-icon="grid_on">grid_on</span>
-                </div>
-                <span class="font-label-md text-label-md text-on-surface">Besi dan Baja</span>
-            </div>
-            
-            <div class="group bg-white p-lg rounded-xl shadow-sm border border-outline-variant hover:border-secondary transition-all cursor-pointer flex flex-col items-center text-center">
-                <div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mb-md group-hover:bg-secondary-fixed transition-colors">
-                    <span class="material-symbols-outlined text-primary group-hover:text-secondary text-3xl" data-icon="foundation">foundation</span>
-                </div>
-                <span class="font-label-md text-label-md text-on-surface">Bata & Batako</span>
-            </div>
-            
-            <div class="group bg-white p-lg rounded-xl shadow-sm border border-outline-variant hover:border-secondary transition-all cursor-pointer flex flex-col items-center text-center">
-                <div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mb-md group-hover:bg-secondary-fixed transition-colors">
-                    <span class="material-symbols-outlined text-primary group-hover:text-secondary text-3xl" data-icon="format_paint">format_paint</span>
-                </div>
-                <span class="font-label-md text-label-md text-on-surface">Cat Bangunan</span>
-            </div>
-            
-            <div class="group bg-white p-lg rounded-xl shadow-sm border border-outline-variant hover:border-secondary transition-all cursor-pointer flex flex-col items-center text-center">
-                <div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mb-md group-hover:bg-secondary-fixed transition-colors">
-                    <span class="material-symbols-outlined text-primary group-hover:text-secondary text-3xl" data-icon="roofing">roofing</span>
-                </div>
-                <span class="font-label-md text-label-md text-on-surface">Atap & Genteng</span>
-            </div>
-            
-            <div class="group bg-white p-lg rounded-xl shadow-sm border border-outline-variant hover:border-secondary transition-all cursor-pointer flex flex-col items-center text-center">
-                <div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mb-md group-hover:bg-secondary-fixed transition-colors">
-                    <span class="material-symbols-outlined text-primary group-hover:text-secondary text-3xl" data-icon="handyman">handyman</span>
-                </div>
-                <span class="font-label-md text-label-md text-on-surface">Peralatan</span>
-            </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
+            @php
+                $kategori = [
+                    ['icon' => 'architecture', 'label' => 'Semen'],
+                    ['icon' => 'grid_on', 'label' => 'Besi & Baja'],
+                    ['icon' => 'foundation', 'label' => 'Bata & Batako'],
+                    ['icon' => 'format_paint', 'label' => 'Cat Bangunan'],
+                    ['icon' => 'roofing', 'label' => 'Atap & Genteng'],
+                    ['icon' => 'handyman', 'label' => 'Peralatan']
+                ];
+            @endphp
+
+            @foreach ($kategori as $kat)
+                <a href="{{ route('produk.front') }}" 
+                   class="group bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80 hover:border-[#183059] hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#183059] transition-colors duration-300 shadow-inner">
+                        <span class="material-symbols-outlined text-[#183059] group-hover:text-amber-400 text-3xl transition-colors duration-300">{{ $kat['icon'] }}</span>
+                    </div>
+                    <span class="font-bold text-sm text-slate-700 group-hover:text-[#183059]">{{ $kat['label'] }}</span>
+                </a>
+            @endforeach
         </div>
     </section>
-
-    <section class="scroll-reveal visible">
-        <div class="flex justify-between items-end mb-xl">
+    <section class="space-y-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 pb-6">
             <div>
-                <h2 class="font-headline-lg text-headline-lg text-primary">Produk Unggulan</h2>
-                <p class="text-on-surface-variant">Pilihan terbaik untuk konstruksi kokoh dan tahan lama.</p>
+                <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600">Rekomendasi Kontraktor</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#183059] mt-1">Produk Terlaris Mingguan</h2>
             </div>
-            <a class="text-secondary font-label-md text-label-md flex items-center gap-xs hover:underline" href="{{ route('produk.front') }}">
-                Lihat Semua <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+            <a href="{{ route('produk.front') }}" class="inline-flex items-center gap-1 font-bold text-sm text-[#183059] hover:text-amber-600 group">
+                <span>Lihat Seluruh Katalog</span>
+                <span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1">arrow_forward</span>
             </a>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
-            
-            <div class="bg-white rounded-xl shadow-sm border border-outline-variant overflow-hidden hover:shadow-md transition-shadow group">
-                <div class="h-64 bg-surface-container-high overflow-hidden relative">
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Semen Tiga Roda" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7HWXHu5ooEJSfHtDpEjgvZR-IjBcGu9Dnh_6xhxTMoDCgR4FDtifFbmGGbRlzpYoLzQFjbPLFa_zmij7KmAngpuofWV7wOHTOOrfOsDDSk77q9KLCPNqRMzE4qtK2BppyPzL4tV3PjU7TRRkTg7-4XdlkJu2wNKrxDAwKbmxAYEUvZbDKINUz9VZyUfumG3wBDTrieZEVNMsZpypmGOPArrQVv9zpfyQ96OMQ8g_ZXNM0wo0Pn5oUHIfpkoAq8sblMX1qBYb33Dbb"/>
-                    <span class="absolute top-md left-md bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">Tersedia</span>
-                </div>
-                <div class="p-lg">
-                    <h3 class="font-headline-md text-headline-md text-primary mb-sm">Semen Tiga Roda 50kg</h3>
-                    <div class="flex justify-between items-center mb-md">
-                        <span class="text-secondary font-bold text-xl">Rp 65.000</span>
-                        <span class="text-label-sm text-on-surface-variant">Stok: 150 Sak</span>
-                    </div>
-                    <button class="w-full bg-primary text-white py-sm rounded-lg font-label-md text-label-md hover:bg-opacity-90 transition-colors">Lihat Detail</button>
-                </div>
-            </div>
-            
-            <div class="bg-white rounded-xl shadow-sm border border-outline-variant overflow-hidden hover:shadow-md transition-shadow group">
-                <div class="h-64 bg-surface-container-high overflow-hidden relative">
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Cat Dulux" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgjJtSYVUVkR5FbLH6ErbgLLC-PxI_4N-jE2zA4OphVG--uRUrCB7slaZSvXVzl8hUHWMwHrjSuswskU3bTPdixsC04emrfdNkZaIjXtp-yL5UeeV5FjzawfXO6a-7osFtvyVUyywqhCaHvpkevSXPvp7CIb61L_jsxb8AV8jyQU8VaANlTF2EB5KYa197nPuHOJhzZqC2n3aE-dpEEAaDYW-f2PI5OrdAkhjeOeniXkcqyVu61_rnZxAAzz4dWLCbZ63ioGbupjI7"/>
-                    <span class="absolute top-md left-md bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">Tersedia</span>
-                </div>
-                <div class="p-lg">
-                    <h3 class="font-headline-md text-headline-md text-primary mb-sm">Cat Dulux Pentalite 5L</h3>
-                    <div class="flex justify-between items-center mb-md">
-                        <span class="text-secondary font-bold text-xl">Rp 245.000</span>
-                        <span class="text-label-sm text-on-surface-variant">Stok: 45 Pail</span>
-                    </div>
-                    <button class="w-full bg-primary text-white py-sm rounded-lg font-label-md text-label-md hover:bg-opacity-90 transition-colors">Lihat Detail</button>
-                </div>
-            </div>
-            
-            <div class="bg-white rounded-xl shadow-sm border border-outline-variant overflow-hidden hover:shadow-md transition-shadow group">
-                <div class="h-64 bg-surface-container-high overflow-hidden relative">
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Besi Beton" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfkKnvIbVR79C1x0J6eKcbXlzUrh1NSjo_lU_Im4Fy1gmYVHUWMxVGQZ2lD0v20TO9gfh0dOo_RICzccZooIRsklYWOQvUHtyyjFg8s4qeCGw4wivJ1MnZHpySDmRl1vtjRZESCkz2SiXv4O01WtZbCPZYbQy-u7UynlcAlCmE3XW_mTh1HMVZ_moVxMsAH3T85oNrbyShjyNRZojzVA6FoPYmD8tTiigjnGjTR_ohDfF52tuHtO-dD4j4GK5LSoh_m9NT_odemesT"/>
-                    <span class="absolute top-md left-md bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded">Stok Terbatas</span>
-                </div>
-                <div class="p-lg">
-                    <h3 class="font-headline-md text-headline-md text-primary mb-sm">Besi Beton Ulir 12mm</h3>
-                    <div class="flex justify-between items-center mb-md">
-                        <span class="text-secondary font-bold text-xl">Rp 112.500</span>
-                        <span class="text-label-sm text-on-surface-variant">Stok: 24 Batang</span>
-                    </div>
-                    <button class="w-full bg-primary text-white py-sm rounded-lg font-label-md text-label-md hover:bg-opacity-90 transition-colors">Lihat Detail</button>
-                </div>
-            </div>
-            
-        </div>
-    </section>
-
-    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg scroll-reveal visible">
-        <div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm flex items-center gap-md border border-outline-variant">
-            <div class="bg-primary-fixed p-sm rounded-lg text-primary">
-                <span class="material-symbols-outlined" data-icon="verified">verified</span>
-            </div>
-            <div>
-                <h4 class="font-label-md text-label-md font-bold">Produk Berkualitas</h4>
-                <p class="text-label-sm text-on-surface-variant">SNI & Standar Industri</p>
-            </div>
-        </div>
-        
-        <div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm flex items-center gap-md border border-outline-variant">
-            <div class="bg-secondary-fixed p-sm rounded-lg text-secondary">
-                <span class="material-symbols-outlined" data-icon="payments">payments</span>
-            </div>
-            <div>
-                <h4 class="font-label-md text-label-md font-bold">Harga Kompetitif</h4>
-                <p class="text-label-sm text-on-surface-variant">Terbaik di Pasaran</p>
-            </div>
-        </div>
-        
-        <div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm flex items-center gap-md border border-outline-variant">
-            <div class="bg-primary-fixed p-sm rounded-lg text-primary">
-                <span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
-            </div>
-            <div>
-                <h4 class="font-label-md text-label-md font-bold">Stok Lengkap</h4>
-                <p class="text-label-sm text-on-surface-variant">Siap Kirim Kapanpun</p>
-            </div>
-        </div>
-        
-        <div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm flex items-center gap-md border border-outline-variant">
-            <div class="bg-secondary-fixed p-sm rounded-lg text-secondary">
-                <span class="material-symbols-outlined" data-icon="speed">speed</span>
-            </div>
-            <div>
-                <h4 class="font-label-md text-label-md font-bold">Pelayanan Cepat</h4>
-                <p class="text-label-sm text-on-surface-variant">Pengiriman Tepat Waktu</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="flex flex-col lg:flex-row gap-xl items-center scroll-reveal visible">
-        <div class="w-full lg:w-1/2 h-[400px] rounded-2xl overflow-hidden shadow-xl">
-            <img class="w-full h-full object-cover" alt="Gudang Toko" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoLRqhJRtZBQSrP8oZVsfTcTBCe0kROILQ0oSOAgZ9DrHzvoX4zdORdtF6aLKE-FCdHyK7zUVA5EUx5FvSA55jqLxBvx6S0MYDWHIZmOANjE2w7H45NCoPsy5IHwCgSPTX7ULuGTDtX5dfLMrUtANsWSGvNubo73pDg51I6EXK96_K81rJbFZBtkoO4ReF9X-0ElP04c1yxLTEGwYEiLgS4TXnndBZ6NMCV6iNY5gQPI5N6OoidjGnrzP7YS7NOUbUmG9vxO5DqAGd"/>
-        </div>
-        
-        <div class="w-full lg:w-1/2 space-y-md">
-            <span class="text-secondary font-label-md text-label-md tracking-widest uppercase">Profil Toko</span>
-            <h2 class="font-headline-lg text-headline-lg text-primary">Membangun Kepercayaan Sejak 2010</h2>
-            <p class="text-on-surface-variant body-md text-body-md leading-relaxed">Toko Bangunan Bangun Mulyo telah menjadi mitra terpercaya bagi ribuan kontraktor dan pemilik rumah di wilayah Jawa Barat. Kami berkomitmen menyediakan material bangunan berkualitas tinggi, mulai dari fondasi hingga atap, dengan layanan yang mengutamakan kepuasan pelanggan dan ketepatan waktu.</p>
-            <p class="text-on-surface-variant body-md text-body-md leading-relaxed">Kami percaya bahwa bangunan yang kokoh dimulai dari material yang tepat. Itulah mengapa kami hanya bekerja sama dengan merek-merek ternama dan terjamin kualitasnya.</p>
-            <button class="bg-primary text-white px-lg py-sm rounded-lg font-label-md text-label-md hover:translate-y-[-2px] transition-transform shadow-md">Selengkapnya</button>
-        </div>
-    </section>
-
-    <section class="scroll-reveal visible">
-        <div class="text-center mb-xl">
-            <h2 class="font-headline-lg text-headline-lg text-primary">Apa Kata Mereka?</h2>
-            <p class="text-on-surface-variant">Kepuasan pelanggan adalah prioritas utama kami.</p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
-            
-            <div class="bg-white p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
-                <p class="italic text-on-surface-variant mb-lg font-body-md text-body-md">"Sangat puas belanja di Bangun Mulyo. Harga semen dan besi betonnya paling kompetitif dibanding toko lain. Pengiriman juga sangat cepat sampai ke lokasi proyek."</p>
-                <div class="flex items-center gap-md">
-                    <img class="w-12 h-12 rounded-full object-cover" alt="Andi" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvHrXKuVbUBhpxo5rym1derbpmih4nRYQvF1IR0gKPX08aG718UTTDGOlAuSVdF0S71vdhterbSgMID1mWhJpH3Q45qezu28RTbIaowzQCGa96FBgPzM4KZq1rVHkDV1L13z51tBSsk74BqFHCgRmVGJrbm4c1UePH3_ur70lWAN8S4gZ2o_9afN2CwIDXJFSRfQnQT0coioUp7GNnXjtvQy4tisoIdxHg4VHZpoVdDglEFQRlPmP4idLZhkNWqTkc1_nabliQlkiP"/>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            @forelse ($produkUnggulan as $item)
+                <div class="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <p class="font-bold text-primary text-label-md">Andi Setiawan</p>
-                        <p class="text-label-sm text-on-surface-variant">Kontraktor Sipil</p>
+                        <div class="h-64 bg-slate-100 overflow-hidden relative">
+                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                                 alt="{{ $item->nama_produk }}" 
+                                 src="{{ $item->gambar ? asset('storage/' . $item->gambar) : 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&auto=format&fit=crop' }}"/>
+                            
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-extrabold shadow-md {{ $item->jumlah_produk > 0 ? 'bg-emerald-500 text-white' : 'bg-rose-500 text-white' }}">
+                                    {{ $item->jumlah_produk > 0 ? '● Stok Ready' : 'Habis' }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-3">
+                            <h3 class="font-bold text-lg text-slate-800 line-clamp-1 group-hover:text-[#183059] transition-colors">{{ $item->nama_produk }}</h3>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-xs font-bold text-slate-400">Rp</span>
+                                <span class="text-2xl font-black text-[#183059]">{{ number_format($item->harga_jual, 0, ',', '.') }}</span>
+                                <span class="text-xs text-slate-500 font-medium">/ satuan</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-6 pb-6 pt-2">
+                        <a href="{{ route('produk.show', $item->id_produk) }}" 
+                           class="block w-full py-3 px-4 rounded-xl bg-slate-100 hover:bg-[#183059] text-slate-700 hover:text-white font-bold text-xs text-center tracking-wider uppercase transition-all shadow-sm">
+                            Lihat Spesifikasi
+                        </a>
+                    </div>
+                </div>
+            @empty
+                <div class="col-span-full text-center py-16 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-300">
+                    <span class="material-symbols-outlined text-5xl text-slate-400 mb-2">inventory_2</span>
+                    <p class="text-slate-600 font-bold">Belum ada barang yang didaftarkan ke etalase.</p>
+                </div>
+            @endforelse
+        </div>
+    </section>
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex items-start gap-4">
+            <div class="p-3 bg-blue-50 text-[#183059] rounded-xl font-bold">
+                <span class="material-symbols-outlined text-2xl">verified</span>
+            </div>
+            <div>
+                <h4 class="font-extrabold text-slate-800 text-base">Material Bersertifikat</h4>
+                <p class="text-xs text-slate-500 mt-1 leading-relaxed">Jaminan semen tidak menggumpal dan besi full SNI.</p>
+            </div>
+        </div>
+        
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex items-start gap-4">
+            <div class="p-3 bg-amber-50 text-amber-600 rounded-xl font-bold">
+                <span class="material-symbols-outlined text-2xl">local_shipping</span>
+            </div>
+            <div>
+                <h4 class="font-extrabold text-slate-800 text-base">Armada Sendiri</h4>
+                <p class="text-xs text-slate-500 mt-1 leading-relaxed">Pengiriman langsung turun ke bongkaran lokasi proyek.</p>
+            </div>
+        </div>
+        
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex items-start gap-4">
+            <div class="p-3 bg-emerald-50 text-emerald-600 rounded-xl font-bold">
+                <span class="material-symbols-outlined text-2xl">payments</span>
+            </div>
+            <div>
+                <h4 class="font-extrabold text-slate-800 text-base">Harga Transparan</h4>
+                <p class="text-xs text-slate-500 mt-1 leading-relaxed">Harga grosir terbuka tanpa ada potongan gaib di nota.</p>
+            </div>
+        </div>
+        
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex items-start gap-4">
+            <div class="p-3 bg-purple-50 text-purple-600 rounded-xl font-bold">
+                <span class="material-symbols-outlined text-2xl">support_agent</span>
+            </div>
+            <div>
+                <h4 class="font-extrabold text-slate-800 text-base">Konsultasi Gratis</h4>
+                <p class="text-xs text-slate-500 mt-1 leading-relaxed">Bantuan hitung kubikasi dan kebutuhan takaran cat.</p>
+            </div>
+        </div>
+    </section>
+    <section class="bg-slate-900 rounded-3xl overflow-hidden shadow-2xl text-white border border-slate-800">
+        <div class="grid grid-cols-1 lg:grid-cols-12">
+            <div class="lg:col-span-6 h-80 lg:h-auto relative min-h-[350px]">
+                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1000&auto=format&fit=crop" 
+                     class="w-full h-full object-cover opacity-85" alt="Gudang Toko">
+                <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-slate-900 via-transparent to-transparent"></div>
+            </div>
+            
+            <div class="lg:col-span-6 p-8 sm:p-12 lg:p-16 flex flex-col justify-center space-y-6">
+                <div class="space-y-2">
+                    <span class="text-xs font-black tracking-widest uppercase text-amber-400">TENTANG BANGUN MULYO</span>
+                    <h2 class="text-3xl sm:text-4xl font-black leading-tight">Membangun Fondasi Kepercayaan Sejak 2010.</h2>
+                </div>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    Kami bukan sekadar toko penjual material. Bangun Mulyo lahir sebagai tulang punggung rantai pasok ribuan mandor di Jawa Barat. Dengan gudang logistik seluas 2.000 meter persegi, kami memastikan proyek Anda tidak pernah terhenti akibat kelangkaan semen atau keterlambatan besi beton.
+                </p>
+                <div class="pt-2">
+                    <a href="{{ route('profil') }}" 
+                       class="inline-flex items-center gap-2 px-6 py-3.5 bg-[#183059] border border-slate-700 hover:border-amber-400 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg group">
+                        <span>Lihat Profil & Sejarah Lengkap</span>
+                        <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1 text-amber-400">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="space-y-12">
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+            <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600">Bukti Nyata di Lapangan</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-[#183059]">Apa Kata Para Mandor?</h2>
+            <p class="text-slate-500 text-sm">Reputasi kami dibangun di atas beton proyek mereka.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between relative">
+                <div class="text-amber-400 text-lg tracking-widest mb-4">★★★★★</div>
+                <p class="text-slate-600 text-sm italic mb-8 leading-relaxed">"Sangat puas belanja di Bangun Mulyo. Harga semen dan besi betonnya paling kompetitif dibanding toko lain. Pengiriman armada cepat sampai ke lokasi proyek."</p>
+                <div class="flex items-center gap-4 pt-4 border-t border-slate-100">
+                    <img class="w-12 h-12 rounded-full object-cover ring-2 ring-[#183059]/20" alt="Andi" src="https://ui-avatars.com/api/?name=Andi+Setiawan&background=183059&color=ffffff"/>
+                    <div>
+                        <p class="font-extrabold text-[#183059] text-sm">Andi Setiawan</p>
+                        <p class="text-xs text-slate-400 font-medium">Kontraktor Sipil</p>
                     </div>
                 </div>
             </div>
             
-            <div class="bg-white p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
-                <p class="italic text-on-surface-variant mb-lg font-body-md text-body-md">"Pilihan catnya lengkap sekali. Adminnya sangat membantu saat saya bingung memilih warna untuk renovasi rumah. Terima kasih Bangun Mulyo!"</p>
-                <div class="flex items-center gap-md">
-                    <img class="w-12 h-12 rounded-full object-cover" alt="Siska" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCr18hQtO9aD0YN_iss8qCyO2MprL6BkhSKnv7AAUZzafp3CcE8HM43d8lclSzgZxIf6UJUTrHK1Edfb1YFhfW07NR3CJMHS4jH5dNYgovike9uMt4jHgYG42PohjUutUsowddXdVKvcmiLmcY6QcxX0yvJuK3Wr6y82wrXVoxfBeTfvuLKKcxHrRODpBj_QWHN4bbO3lMAm_9dGrLEAq5rU0abULGKzaaOzkfx9PpkLyyOFsl2nxOHVJ1NY6_-DvGwcFBrrJpPmUEm"/>
+            <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between relative">
+                <div class="text-amber-400 text-lg tracking-widest mb-4">★★★★★</div>
+                <p class="text-slate-600 text-sm italic mb-8 leading-relaxed">"Pilihan catnya lengkap sekali. Adminnya sangat membantu saat saya bingung menghitung kebutuhan warna untuk renovasi ruko. Terima kasih Bangun Mulyo!"</p>
+                <div class="flex items-center gap-4 pt-4 border-t border-slate-100">
+                    <img class="w-12 h-12 rounded-full object-cover ring-2 ring-[#183059]/20" alt="Siska" src="https://ui-avatars.com/api/?name=Siska+Amelia&background=0d9488&color=ffffff"/>
                     <div>
-                        <p class="font-bold text-primary text-label-md">Siska Amelia</p>
-                        <p class="text-label-sm text-on-surface-variant">Ibu Rumah Tangga</p>
+                        <p class="font-extrabold text-[#183059] text-sm">Siska Amelia</p>
+                        <p class="text-xs text-slate-400 font-medium">Pemilik Proyek Ruko</p>
                     </div>
                 </div>
             </div>
             
-            <div class="bg-white p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
-                <p class="italic text-on-surface-variant mb-lg font-body-md text-body-md">"Stoknya selalu ready meskipun dalam jumlah banyak. Sangat membantu untuk kelancaran proyek gedung kantor saya. Pelayanan admin via WA juga responsif."</p>
-                <div class="flex items-center gap-md">
-                    <img class="w-12 h-12 rounded-full object-cover" alt="Bambang" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJvI2PMHV1O8Pww3mJ5Wl6auYfZ1RjNW2sGf6JKyABvqZmuH32_eVt4paWI4-NApNIlPU5_-8zpFJD-zqG5hm0Xpeyu5A-CNEM1-Rhia4RxuxLndzHmQVwYylX-7w-JWKAZVSV9mkCZphk_oEWLvIv_0C8ysPImPh-gM56o0Q1mXWBPLezX-KLOrC9cZbif9WU2zC_an9JvFfVTmFBhws6s7711_A0IM8sq0VUhfSOb4Fp8ISJSxTNTbYM6ydbZuUMc8Nl554Nkuy6"/>
+            <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between relative">
+                <div class="text-amber-400 text-lg tracking-widest mb-4">★★★★★</div>
+                <p class="text-slate-600 text-sm italic mb-8 leading-relaxed">"Stok selalu ready meskipun saya order dadakan dalam partai besar. Pelayanan admin via WhatsApp juga responsif 24 jam. Sangat recommended!"</p>
+                <div class="flex items-center gap-4 pt-4 border-t border-slate-100">
+                    <img class="w-12 h-12 rounded-full object-cover ring-2 ring-[#183059]/20" alt="Bambang" src="https://ui-avatars.com/api/?name=Bambang+Wijaya&background=ea580c&color=ffffff"/>
                     <div>
-                        <p class="font-bold text-primary text-label-md">Bambang Wijaya</p>
-                        <p class="text-label-sm text-on-surface-variant">Project Manager</p>
+                        <p class="font-extrabold text-[#183059] text-sm">Bambang Wijaya</p>
+                        <p class="text-xs text-slate-400 font-medium">Site Manager Proyek</p>
                     </div>
                 </div>
             </div>
             
         </div>
     </section>
-
-    <section class="bg-primary rounded-3xl p-xl flex flex-col items-center text-center text-white scroll-reveal overflow-hidden relative visible">
-        <div class="absolute -top-24 -right-24 w-64 h-64 bg-secondary rounded-full opacity-10"></div>
-        <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full opacity-5"></div>
+    <section class="bg-gradient-to-br from-[#183059] to-[#0f1f3a] rounded-3xl p-8 sm:p-16 flex flex-col items-center text-center text-white shadow-2xl overflow-hidden relative border border-white/10">
+        <div class="absolute -top-24 -right-24 w-80 h-80 bg-amber-500 rounded-full opacity-10 blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-blue-500 rounded-full opacity-10 blur-3xl pointer-events-none"></div>
         
-        <h2 class="font-headline-lg text-headline-lg mb-md relative z-10">Siap Memenuhi Kebutuhan Material Bangunan Anda?</h2>
-        <p class="body-lg text-body-lg mb-xl max-w-2xl text-on-primary-container relative z-10">Dapatkan penawaran harga grosir untuk pembelian partai besar dan pengiriman gratis untuk wilayah tertentu.</p>
+        <span class="text-xs font-black tracking-widest uppercase text-amber-400 mb-3 relative z-10">PESANAN PARTAI BESAR</span>
+        <h2 class="font-black text-3xl sm:text-5xl mb-4 relative z-10 max-w-2xl">Siap Memulai Konstruksi Proyek Anda?</h2>
+        <p class="text-slate-300 text-sm sm:text-base mb-10 max-w-xl relative z-10">Dapatkan penawaran harga penawaran khusus RAB proyek dan gratis ongkos kirim untuk pengiriman wilayah tertentu.</p>
         
-        <div class="flex flex-col md:flex-row gap-md relative z-10">
-            <button class="bg-secondary text-white px-xl py-md rounded-xl font-headline-md text-headline-md hover:scale-105 transition-all shadow-xl">Pesan Sekarang</button>
-            <a href="{{ route('kontak') }}" class="bg-white text-primary px-xl py-md rounded-xl font-headline-md text-headline-md hover:bg-surface-container transition-all">Hubungi Admin</a>
+        <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto relative z-10">
+            <a href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20ingin%20mengirimkan%20RAB%20untuk%20penawaran%20material." target="_blank"
+               class="w-full sm:w-auto px-8 py-4 bg-[#25D366] text-white font-extrabold text-sm rounded-xl hover:bg-[#20ba5a] hover:scale-105 active:scale-95 transition-all shadow-xl flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined">send</span>
+                <span>Kirim List Kebutuhan via WA</span>
+            </a>
+            
+            <a href="{{ route('kontak') }}" 
+               class="w-full sm:w-auto px-8 py-4 bg-white/10 text-white hover:bg-white hover:text-[#183059] border border-white/20 font-bold text-sm rounded-xl transition-all text-center">
+                Alamat & Peta Gudang
+            </a>
         </div>
     </section>
-
-</main>
+    </main>
 @endsection

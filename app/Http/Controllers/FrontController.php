@@ -11,12 +11,18 @@ class FrontController extends Controller
 {
     public function home()
     {
-    $hero = HeroSection::first(); 
-    ($hero->toArray()); 
+        $hero = HeroSection::first();
 
-    return view('home', compact('hero'));
+        // [TAMBAHAN BARU]: Ambil 3 produk terbaru dari tabel 'produk'
+        $produkUnggulan = Produk::latest()->take(3)->get();
+
+        // Oper variabel $produkUnggulan ke halaman home
+        return view('home', compact('hero', 'produkUnggulan'));
     }
-
+    public function profil()
+    {
+        return view('profil');
+    }
     public function produk()
     {
         $produks = Produk::latest()->paginate(12);
